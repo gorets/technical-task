@@ -9,11 +9,18 @@
 
 namespace App\Zoo\Animals\Skills;
 
+/**
+ * Class Eat
+ * @package App\Zoo\Animals\Skills
+ */
 trait Eat
 {
+    /**
+     * @return string
+     */
     public function eat()
     {
-        return $this->getAnimalType() .' '. $this->name.' EATS';
+        return $this->type . ' ' . $this->name . ' EATS';
     }
 
 }

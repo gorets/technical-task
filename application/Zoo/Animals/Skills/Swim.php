@@ -9,11 +9,18 @@
 namespace App\Zoo\Animals\Skills;
 
 
+/**
+ * Class Swim
+ * @package App\Zoo\Animals\Skills
+ */
 trait Swim
 {
+    /**
+     * @return string
+     */
     public function swim()
     {
-        return $this->getAnimalType() .' '. $this->name.' is SWIM!!!';
+        return $this->type . ' ' . $this->name . ' is SWIM!!!';
     }
 
 }

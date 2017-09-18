@@ -9,10 +9,14 @@
 namespace App\Zoo\Animals;
 
 use App\Zoo\Animals\Common\AnimalInterface,
-    App\Zoo\Animals\Common\AnimalAbstract,
+    App\Zoo\Animals\Common\Animal,
     App\Zoo\Animals\Skills\Swim;
 
-class Penguin extends AnimalAbstract implements AnimalInterface
+/**
+ * Class Penguin
+ * @package App\Zoo\Animals
+ */
+class Penguin extends Animal implements AnimalInterface
 {
     use Swim;
 

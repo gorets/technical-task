@@ -9,10 +9,17 @@
 namespace App\Zoo\Animals\Skills;
 
 
+/**
+ * Class Woof
+ * @package App\Zoo\Animals\Skills
+ */
 trait Woof
 {
+    /**
+     * @return string
+     */
     public function woof()
     {
-        return $this->getAnimalType() .' '. $this->name.' is WOOF!!!';
+        return $this->type . ' ' . $this->name . ' is WOOF!!!';
     }
 }

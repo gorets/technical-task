@@ -9,10 +9,17 @@
 
 namespace App\Zoo\Animals\Skills;
 
+/**
+ * Class Meow
+ * @package App\Zoo\Animals\Skills
+ */
 trait Meow
 {
+    /**
+     * @return string
+     */
     public function meow()
     {
-        return $this->getAnimalType() .' '. $this->name.' MEOWED!!!';
+        return $this->type . ' ' . $this->name . ' MEOWED!!!';
     }
 }

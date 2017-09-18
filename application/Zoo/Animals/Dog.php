@@ -9,11 +9,15 @@
 namespace App\Zoo\Animals;
 
 use App\Zoo\Animals\Common\AnimalInterface,
-    App\Zoo\Animals\Common\AnimalAbstract,
+    App\Zoo\Animals\Common\Animal,
     App\Zoo\Animals\Skills\Woof,
     App\Zoo\Animals\Skills\Bite;
 
-class Dog extends  AnimalAbstract implements AnimalInterface
+/**
+ * Class Dog
+ * @package App\Zoo\Animals
+ */
+class Dog extends Animal implements AnimalInterface
 {
     /**
      * @var array

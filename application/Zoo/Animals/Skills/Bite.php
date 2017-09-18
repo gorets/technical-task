@@ -8,11 +8,17 @@
 
 namespace App\Zoo\Animals\Skills;
 
-
+/**
+ * Class Bite
+ * @package App\Zoo\Animals\Skills
+ */
 trait Bite
 {
+    /**
+     * @return string
+     */
     public function bite()
     {
-        return $this->getAnimalType() .' '. $this->name.' BITES!!!';
+        return $this->type . ' ' . $this->name . ' BITES!!!';
     }
 }

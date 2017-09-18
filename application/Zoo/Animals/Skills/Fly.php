@@ -8,11 +8,17 @@
 
 namespace App\Zoo\Animals\Skills;
 
-
+/**
+ * Class Fly
+ * @package App\Zoo\Animals\Skills
+ */
 trait Fly
 {
+    /**
+     * @return string
+     */
     public function fly()
     {
-        return $this->getAnimalType() .' '. $this->name.' is FLY!!!';
+        return $this->type . ' ' . $this->name . ' is FLY!!!';
     }
 }

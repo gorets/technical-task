@@ -6,10 +6,12 @@
             "email": "vladimir.gorobets@gmail.com"
         }
     ],
+    "require": {
+        "php": ">=5.5"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "application/"
         }
     }
-
 }

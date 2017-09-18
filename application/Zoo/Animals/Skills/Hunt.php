@@ -10,16 +10,32 @@ namespace App\Zoo\Animals\Skills;
 
 
 use App\Zoo\Log;
+use App\Zoo\Zoo;
 
+/**
+ * Class Hunt
+ * @package App\Zoo\Animals\Skills
+ */
 trait Hunt
 {
-    public function hunt($target='')
+    /**
+     * @param string $to
+     * @return string
+     */
+    public function hunt($to = '')
     {
-        if ($target) {
-            if (in_array($target, $this->hunts)) {
-                return $this->getAnimalType() .' '. $this->name .' is hunt to '. $target .'!!!';
+        if ($to) {
+            if (in_array($to, $this->hunts)) {
+                Log::add($this->type . ' ' . $this->name . ' is hunt to ' . $to . '!!!');
+                $zoo = Zoo::getInstance();
+                $objects = $zoo->findAnimalsByType($to);
+                if ($objects) {
+                    $zoo->dieAnimals($objects[0]->type);
+                } else {
+                    Log::add($this->type . ' ' . $this->name . ' did not find ' . $to . ' for hunting :(');
+                }
             } else {
-                Log::add($this->type .' not hunt to '. $target .'!!!', 'Warning');
+                Log::add($this->type . ' not hunt to ' . $to . '!!!', 'Warning');
             }
         }
     }

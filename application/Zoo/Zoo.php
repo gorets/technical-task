@@ -10,8 +10,18 @@ namespace App\Zoo;
 
 use App\Zoo\Animals\Common\AnimalSkills;
 
+/**
+ * Class Zoo
+ * @package App\Zoo
+ */
 class Zoo
 {
+
+    /**
+     * @var
+     */
+    protected static $instance;
+
     /**
      * @var array
      */
@@ -20,6 +30,38 @@ class Zoo
      * @var int
      */
     private $counter = 0;
+
+    /**
+     * Zoo constructor.
+     */
+    private function __construct()
+    {
+    }
+
+    /**
+     *
+     */
+    private function __clone()
+    {
+    }
+
+    /**
+     *
+     */
+    private function __wakeup()
+    {
+    }
+
+    /**
+     * @return Zoo
+     */
+    public static function getInstance()
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new self;
+        }
+        return self::$instance;
+    }
 
     /**
      * @param array $config
@@ -46,7 +88,7 @@ class Zoo
             $animal = new $cls($config);
             $this->animals[$config['id']] = $animal;
         } else {
-            Log::add('Animal '.$type.' unknown in Zoo', 'Warning');
+            Log::add('Animal ' . $type . ' unknown in Zoo', 'Warning');
         }
 
     }
@@ -55,7 +97,7 @@ class Zoo
      * @param string $type
      * @param int $dieCount
      */
-    public function dieAnimals(string $type='', $dieCount=1)
+    public function dieAnimals($type = '', $dieCount = 1)
     {
         $animals = $this->findAnimalsByType($type);
         if ($animals) {
@@ -63,6 +105,7 @@ class Zoo
             foreach ($animals as $animal) {
                 $i++;
                 if ($i <= $dieCount) {
+                    Log::add('Die ' . $animal->type . ' ' . $animal->name);
                     unset($this->animals[$animal->id]);
                 }
             }
@@ -101,14 +144,15 @@ class Zoo
      * @param string $type
      * @return array
      */
-    public function findAnimalsByType(string $type='')
+    public function findAnimalsByType($type = '')
     {
         $out = [];
         if ($this->animals) {
+            reset($this->animals);
             foreach ($this->animals as $animal) {
                 if ($animal->type == $type || $type == '') {
                     $out[] = $animal;
-                    Log::add('Find '.$animal->type. ' '. $animal->name);
+                    Log::add('Find ' . $animal->type . ' ' . $animal->name);
                 }
             }
         } else {

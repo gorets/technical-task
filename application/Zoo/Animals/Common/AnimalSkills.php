@@ -9,6 +9,10 @@
 namespace App\Zoo\Animals\Common;
 
 
+/**
+ * Class AnimalSkills
+ * @package App\Zoo\Animals\Common
+ */
 class AnimalSkills
 {
     const SKILL_BITE = 'bite';
@@ -19,8 +23,11 @@ class AnimalSkills
     const SKILL_WOOF = 'woof';
     const SKILL_HUNT = 'hunt';
 
-    public static function allSkills(){
-
+    /**
+     * @return array
+     */
+    public static function allSkills()
+    {
         return (new \ReflectionClass(static::class))->getConstants();
     }
 }

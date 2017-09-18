@@ -9,10 +9,14 @@
 namespace App\Zoo\Animals;
 
 use App\Zoo\Animals\Common\AnimalInterface,
-    App\Zoo\Animals\Common\AnimalAbstract,
+    App\Zoo\Animals\Common\Animal,
     App\Zoo\Animals\Skills\Bite;
 
-class Rat extends AnimalAbstract implements AnimalInterface
+/**
+ * Class Rat
+ * @package App\Zoo\Animals
+ */
+class Rat extends Animal implements AnimalInterface
 {
     use Bite;
 

@@ -9,15 +9,16 @@
 namespace App\Zoo\Animals\Common;
 
 use App\Zoo\Animals\Skills\Eat,
-    App\Zoo\Animals\Skills\Hunt;
-use App\Zoo\Log;
+    App\Zoo\Animals\Skills\Hunt,
+    App\Zoo\Zoo,
+    App\Zoo\Log;
 
 
 /**
  * Class AnimalAbstract
  * @package App\Zoo\Animals\Common
  */
-class AnimalAbstract
+class Animal
 {
     /**
      * @var array
@@ -37,17 +38,18 @@ class AnimalAbstract
     public function __construct($config)
     {
         if ($config) {
-            foreach ($config as $k => $v){
+            foreach ($config as $k => $v) {
                 $this->params[$k] = $v;
             }
         }
-        Log::add('Create new animal '.$this->type.' '.$this->name);
+        Log::add('Create new animal ' . $this->type . ' ' . $this->name);
     }
 
     /**
      * @param $skill
+     * @param array $opts
      */
-    public function execAction($skill, $opts=[])
+    public function execAction($skill, $opts = [])
     {
         if (method_exists($this, $skill)) {
             //Log::add($this->name.':'.$skill.':'.$opts);
@@ -56,7 +58,7 @@ class AnimalAbstract
                 Log::add($log);
             }
         } else {
-            Log::add($this->type .' does not '. $skill, 'Warning');
+            Log::add($this->type . ' does not ' . $skill, 'Warning');
         }
     }
 
@@ -83,13 +85,17 @@ class AnimalAbstract
      */
     public function __get($name)
     {
-        return isset($this->params[$name]) ?  $this->params[$name]: false;
+        return isset($this->params[$name]) ? $this->params[$name] : false;
     }
 
     /**
      *
      */
-    function __destruct() {
-       Log::add('Die '.$this->type.' '.$this->name);
+    function __destruct()
+    {
+        Log::add('Destruct ' . $this->type . ' ' . $this->name);
     }
+
+
+
 }

@@ -7,7 +7,14 @@
  */
 namespace App\Zoo\Animals\Common;
 
+/**
+ * Interface AnimalInterface
+ * @package App\Zoo\Animals\Common
+ */
 interface AnimalInterface
 {
+    /**
+     * @return mixed
+     */
     public function eat();
 }

@@ -9,10 +9,14 @@
 namespace App\Zoo\Animals;
 
 use App\Zoo\Animals\Common\AnimalInterface,
-    App\Zoo\Animals\Common\AnimalAbstract,
+    App\Zoo\Animals\Common\Animal,
     App\Zoo\Animals\Skills\Fly;
 
-class Sparrow extends  AnimalAbstract implements AnimalInterface
+/**
+ * Class Sparrow
+ * @package App\Zoo\Animals
+ */
+class Sparrow extends Animal implements AnimalInterface
 {
     use Fly;
 

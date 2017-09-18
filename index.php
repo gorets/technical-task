@@ -7,7 +7,9 @@
  */
 
 use App\Zoo\Zoo,
-    App\Zoo\Log;
+    App\Zoo\Log,
+    App\Zoo\Animals\Common\AnimalSkills;
+
 
 ini_set ( 'error_reporting', E_ALL );
 ini_set ( 'display_errors', true );
@@ -27,7 +29,7 @@ $badAnimal = ['type' => 'Chicken', 'name' => 'Chicka'];
 
 Log::add('-----------------------');
 Log::add('Init Zoo', 'Action');
-$zoo = new Zoo();
+$zoo = Zoo::getInstance();
 
 Log::add('-----------------------');
 Log::add('Add animals', 'Action');
@@ -64,37 +66,45 @@ Log::add('Find all cats', 'Action');
 Log::add('-----------------------');
 $cats = $zoo->findAnimalsByType('Cat');
 
-if ($cats[0]) {
+if (isset($cats[0])) {
+    $cat = $cats[0];
+    unset($cats);
     Log::add('-----------------------');
     Log::add('Cat test skills', 'Action');
     Log::add('-----------------------');
-    $cats[0]->execAction('Meow');
-    $cats[0]->execAction('Fly');
-    $cats[0]->execAction('Woof');
-    $cats[0]->execAction('Bite');
-    $cats[0]->execAction('Eat');
+    $cat->execAction(AnimalSkills::SKILL_MEOW);
+    $cat->execAction(AnimalSkills::SKILL_FLY);
+    $cat->execAction(AnimalSkills::SKILL_WOOF);
+    $cat->execAction(AnimalSkills::SKILL_BITE);
+    $cat->execAction(AnimalSkills::SKILL_EAT);
 
     Log::add('-----------------------');
     Log::add('Test Cat hunt skill', 'Action');
     Log::add('-----------------------');
-    $cats[0]->execAction('Hunt', 'Rat');
-    $cats[0]->execAction('Hunt', 'Dog');
-    $cats[0]->execAction('Hunt', 'Sparrow');
+    $cat->execAction(AnimalSkills::SKILL_HUNT, 'Rat');
+    $cat->execAction(AnimalSkills::SKILL_HUNT, 'Dog');
+    $cat->execAction(AnimalSkills::SKILL_HUNT, 'Sparrow');
 }
+unset($cat);
 
 Log::add('-----------------------');
 Log::add('Find all dogs', 'Action');
 Log::add('-----------------------');
 $dogs = $zoo->findAnimalsByType('Dog');
-if ($cats[0]) {
+if (isset($dogs[0])) {
+    $dog = $dogs[0];
+    unset($dogs);
     Log::add('-----------------------');
     Log::add('Dog test skills', 'Action');
     Log::add('-----------------------');
-    $dogs[0]->execAction('Hunt', 'Rat');
-    $dogs[0]->execAction('Hunt', 'Dog');
-    $dogs[0]->execAction('Hunt', 'Sparrow');
-    $dogs[0]->execAction('Hunt', 'Cat');
+    $dog->execAction(AnimalSkills::SKILL_HUNT, 'Rat');
+    $dog->execAction(AnimalSkills::SKILL_HUNT, 'Dog');
+    $dog->execAction(AnimalSkills::SKILL_HUNT, 'Sparrow');
+    $dog->execAction(AnimalSkills::SKILL_HUNT, 'Cat');
+    $dog->execAction(AnimalSkills::SKILL_HUNT, 'Cat');
+    $dog->execAction(AnimalSkills::SKILL_HUNT, 'Cat');
 }
+unset($dog);
 
 
 Log::add('-----------------------');
@@ -112,10 +122,12 @@ $zoo->dieAnimals('', 100);
 Log::add('-----------------------');
 $zoo->findAnimalsByType();
 
-
 echo Log::getFormattedLog();
 
 
+/**
+ * @param $s
+ */
 function pre($s)
 {
     echo "<pre>";
